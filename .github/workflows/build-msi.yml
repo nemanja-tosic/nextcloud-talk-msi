@@ -27,7 +27,7 @@ jobs:
           light NextcloudTalk.wixobj -o NextcloudTalk.msi
 
       - name: Upload MSI
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: NextcloudTalk
+          name: NextcloudTalk.msi
           path: NextcloudTalk.msi
