@@ -18,7 +18,7 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="Nextcloud Talk">
           <Component Id="ProductComponents" Guid="*">
-            <HarvestDirectory Directory="$(var.HarvestDir)" SuppressRootDirectory="yes" ComponentGroupName="HarvestedComponents" />
+            <HarvestDirectory Id="HarvestNextcloudTalk" Directory="INSTALLFOLDER" SuppressRootDirectory="yes" />
           </Component>
         </Directory>
       </Directory>
