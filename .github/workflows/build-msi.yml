@@ -1,0 +1,33 @@
+name: Build MSI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download binaries
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/nextcloud-releases/talk-desktop/releases/download/v0.38.0/Nextcloud.Talk-win32-x64-0.38.0.zip" -OutFile "NextcloudTalk.zip"
+
+      - name: Extract binaries
+        run: |
+          Expand-Archive -Path "NextcloudTalk.zip" -DestinationPath "NextcloudTalk"
+
+      - name: Build MSI
+        run: |
+          candle NextcloudTalk.wxs
+          light NextcloudTalk.wixobj -o NextcloudTalk.msi
+
+      - name: Upload MSI
+        uses: actions/upload-artifact@v2
+        with:
+          name: NextcloudTalk
+          path: NextcloudTalk.msi
