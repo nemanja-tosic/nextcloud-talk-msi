@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
       - name: Download binaries
         run: |
           Invoke-WebRequest -Uri "https://github.com/nextcloud-releases/talk-desktop/releases/download/v0.38.0/Nextcloud.Talk-win32-x64-0.38.0.zip" -OutFile "NextcloudTalk.zip"
