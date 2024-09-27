@@ -32,9 +32,8 @@ jobs:
 
       - name: Build MSI
         run: |
-          candle NextcloudTalk.wxs
-          light NextcloudTalk.wixobj -o NextcloudTalk.msi
-
+          dotnet build NextcloudTalkClient.wixproj
+          
       - name: Upload MSI
         uses: actions/upload-artifact@v4
         with:
