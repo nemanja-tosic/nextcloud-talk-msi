@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
-    <Product Id="*" Name="Nextcloud Talk Client" Version="1.0.0.0" Manufacturer="YourCompany" UpgradeCode="b321a690-9456-4dff-b601-5867098fa481">
-        <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
-
-        <!-- Define directories for installation -->
-        <Directory Id="TARGETDIR" Name="SourceDir">
-            <Directory Id="ProgramFilesFolder">
-                <Directory Id="INSTALLDIR" Name="Nextcloud Talk Client" />
-            </Directory>
-            <Directory Id="ProgramMenuFolder" Name="Programs" />
-        </Directory>
-
-        <!-- Feature definition -->
-        <Feature Id="MainFeature" Title="Nextcloud Talk Client" Level="1">
-            <ComponentGroupRef Id="AppComponents" />
-        </Feature>
-
-        <!-- Component group to include all files and shortcuts -->
-        <Fragment>
-            <DirectoryRef Id="INSTALLDIR">
-                <!-- Include all files from the extracted directory -->
-                <Component Id="AllFiles" Guid="PUT-GUID-HERE">
-                    <Files Include="extracted/NextcloudTalk/**" />
-                </Component>
-            </DirectoryRef>
-
-            <DirectoryRef Id="ProgramMenuFolder">
-                <!-- Shortcut for the application -->
-                <Component Id="ShortcutComponent" Guid="PUT-GUID-HERE">
-                    <Shortcut Id="NextcloudTalkShortcut"
-                              Name="Nextcloud Talk Client"
-                              Description="Start Nextcloud Talk Client"
-                              Target="[INSTALLDIR]NextcloudTalk.exe"
-                              WorkingDirectory="INSTALLDIR" />
-                    <RemoveFolder Id="ProgramMenuFolder" On="uninstall" />
-                    <RegistryValue Root="HKCU" Key="Software\YourCompany\NextcloudTalkClient" Name="installed" Type="integer" Value="1" KeyPath="yes" />
-                </Component>
-            </DirectoryRef>
-        </Fragment>
-    </Product>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://wixtoolset.org/schemas/v4/wxs https://raw.githubusercontent.com/wixtoolset/web/master/src/xsd4/wix.xsd">
+    <Package Name="Nextcloud Talk Client" Version="1.0.0.0" Manufacturer="Example Corporation" UpgradeCode="b321a690-9456-4dff-b601-5867098fa481">
+        <Files Include="extracted/NextcloudTalk/**" />
+    </Package>
 </Wix>
